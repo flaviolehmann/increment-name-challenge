@@ -29,21 +29,21 @@ public class Main {
         return String.join(" ", splitedWord);
     }
 
-    public static boolean hasIncrementWordInItsName(String name, String incrementWord) {
+    private static boolean hasIncrementWordInItsName(String name, String incrementWord) {
         List<String> splitedName = Arrays.asList(name.split(" "));
         return splitedName.get(splitedName.size() - 2).equals(incrementWord);
     }
 
-    public static String addIncrementAndIncrementWord(String word, String incrementWord, Long value) {
+    private static String addIncrementAndIncrementWord(String word, String incrementWord, Long value) {
         return word + " - " + incrementWord + " " + value;
     }
 
     private static boolean hasMoreThenOneWord(String name) {
-        return Arrays.asList(name.split(" ")).size() == 1;
+        return Arrays.asList(name.split(" ")).size() > 1;
     }
 
-    public static String calculateNonRepeatedName(List<String> nameList, String newName) {
-        if (hasMoreThenOneWord(newName) || !hasIncrementWordInItsName(newName, INCREMENT_WORD)) {
+    private static String calculateNonRepeatedName(List<String> nameList, String newName) {
+        if (!hasMoreThenOneWord(newName) || !hasIncrementWordInItsName(newName, INCREMENT_WORD)) {
             return getNewNameToFitList(nameList, addIncrementAndIncrementWord(newName, INCREMENT_WORD, INITIAL_INCREMENT));
         }
         if (hasIncrementWordInItsName(newName, INCREMENT_WORD)) {
